@@ -8,6 +8,15 @@
     android:background="#4CAF50"
     android:padding="24dp">
 
+    <!-- Botón de regresar -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back"
+        android:background="@android:color/transparent"
+        android:contentDescription="Volver" />
+
     <!-- Foto de perfil -->
     <ImageView
         android:id="@+id/fotoPerfil"

@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.kotlin.kapt")
+    id("com.google.gms.google-services") // <- ¡Esta línea ya lo hace bien!
 }
+
 
 android {
     namespace = "com.example.appro2"
@@ -47,4 +50,18 @@ dependencies {
 
     // MPAndroidChart - Sintaxis correcta para Kotlin DSL
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+
+    implementation("androidx.room:room-ktx:2.6.1")
+    implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
+    implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
+
 }
