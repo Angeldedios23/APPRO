@@ -49,6 +49,11 @@ class LoginActivity : AppCompatActivity() {
                                 .get()
                                 .addOnSuccessListener { document ->
                                     val name = document.getString("name") ?: "Usuario"
+
+                                    // Guardar el tiempo actual como hora de inicio de sesión
+                                    val prefs = getSharedPreferences("session", MODE_PRIVATE)
+                                    prefs.edit().putLong("lastLoginTime", System.currentTimeMillis()).apply()
+
                                     showCenteredToast("¡Bienvenido $name!")
 
                                     val intent = Intent(this, MainActivity::class.java)

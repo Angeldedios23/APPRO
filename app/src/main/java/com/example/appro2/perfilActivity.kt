@@ -21,8 +21,25 @@ class PerfilActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Inicializamos Firebase
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+
+        // Validar tiempo de sesión (10 minutos)
+        val prefs = getSharedPreferences("session", MODE_PRIVATE)
+        val lastLoginTime = prefs.getLong("lastLoginTime", 0L)
+        val currentTime = System.currentTimeMillis()
+        val currentUser = auth.currentUser
+
+        if (currentUser == null || lastLoginTime == 0L || currentTime - lastLoginTime > 10 * 60 * 1000) {
+            cerrarSesion("Sesión expirada. Vuelve a iniciar sesión")
+            return
+        }
+
         setContentView(R.layout.activity_perfil)
 
+        // Inicializar vistas
         txtNombre = findViewById(R.id.txtNombre)
         txtCorreo = findViewById(R.id.txtCorreo)
         txtPuntos = findViewById(R.id.txtPuntos)
@@ -30,43 +47,23 @@ class PerfilActivity : AppCompatActivity() {
         btnVerHistorial = findViewById(R.id.btnVerHistorial)
         fotoPerfil = findViewById(R.id.fotoPerfil)
 
-        // Evento para regresar
+        // Imagen por defecto sin cargar desde Firebase
+        fotoPerfil.setImageResource(R.drawable.profile_placeholder)
+
         val backButton = findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener { finish() }
 
-        backButton.setOnClickListener {
-            finish()
-        }
-
-
-        fotoPerfil.setImageResource(R.drawable.ic_user_default)
         txtPuntos.text = "Puntos acumulados: 0.00"
+        txtCorreo.text = currentUser.email ?: "Sin correo"
 
-        auth = FirebaseAuth.getInstance()
-        firestore = FirebaseFirestore.getInstance()
-
-        val currentUser = auth.currentUser
-        if (currentUser == null) {
-            Toast.makeText(this, "Usuario no autenticado", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-            return
-        }
-
-        val userId = currentUser.uid
-        val userEmail = currentUser.email ?: "Sin correo"
-
-        // Mostrar correo de inmediato
-        txtCorreo.text = userEmail
-
-        // Obtener nombre desde Firestore
-        firestore.collection("users").document(userId)
+        // Obtener nombre desde Firestore (si quieres)
+        firestore.collection("users").document(currentUser.uid)
             .get()
             .addOnSuccessListener { document ->
                 val nombre = document.getString("name") ?: "Sin nombre"
                 txtNombre.text = nombre
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Error al obtener datos del usuario", Toast.LENGTH_SHORT).show()
                 txtNombre.text = "Sin nombre"
             }
 
@@ -75,11 +72,17 @@ class PerfilActivity : AppCompatActivity() {
         }
 
         btnCerrarSesion.setOnClickListener {
-            auth.signOut()
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
+            cerrarSesion("Sesión cerrada correctamente")
         }
+    }
+
+    private fun cerrarSesion(mensaje: String) {
+        auth.signOut()
+        getSharedPreferences("session", MODE_PRIVATE).edit().clear().apply()
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }

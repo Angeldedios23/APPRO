@@ -64,4 +64,12 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
     implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
 
+// Firebase Storage
+    implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
+
+// Glide (para cargar imágenes desde una URL)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
+
+
 }
