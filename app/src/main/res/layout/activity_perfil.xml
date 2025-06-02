@@ -8,17 +8,28 @@
     android:background="#4CAF50"
     android:padding="24dp">
 
+    <!-- Botón de regresar -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back"
+        android:background="@android:color/transparent"
+        android:contentDescription="Volver" />
+
     <!-- Foto de perfil -->
     <ImageView
         android:id="@+id/fotoPerfil"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_user_default"
-        android:contentDescription="Foto de perfil"
-        android:background="@drawable/circle_bg"
         android:scaleType="centerCrop"
-        android:layout_marginBottom="16dp"/>
+        android:src="@drawable/profile_placeholder"
+        android:background="@drawable/profile_name_border"
+        android:contentDescription="Foto de perfil"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
 
     <!-- Nombre -->
     <TextView
