@@ -66,6 +66,12 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                showAlert("Correo inválido", "Ingresa un correo electrónico válido")
+                return@setOnClickListener
+            }
+
+
             if (password.length < 6) {
                 showAlert("Contraseña inválida", "Debe tener al menos 6 caracteres")
                 return@setOnClickListener
