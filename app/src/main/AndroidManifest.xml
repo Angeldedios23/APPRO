@@ -17,6 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppRO2">
         <activity
+            android:name=".CompostaAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ComprarCompostaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VenderCompostaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PremioAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".RifaActivity"
+            android:exported="false" />
+        <activity
             android:name=".HistorialAdapter"
             android:exported="false" />
         <activity

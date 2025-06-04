@@ -27,7 +27,7 @@ class PerfilActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        // Validar tiempo de sesión (10 minutos)
+        // Validar tiempo de sesión
         val prefs = getSharedPreferences("session", MODE_PRIVATE)
         val lastLoginTime = prefs.getLong("lastLoginTime", 0L)
         val currentTime = System.currentTimeMillis()
@@ -45,50 +45,37 @@ class PerfilActivity : AppCompatActivity() {
         txtCorreo = findViewById(R.id.txtCorreo)
         txtPuntos = findViewById(R.id.txtPuntos)
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion)
-        btnVerHistorial = findViewById(R.id.btnVerHistorial)
         fotoPerfil = findViewById(R.id.fotoPerfil)
 
-        // Imagen por defecto sin cargar desde Firebase
         fotoPerfil.setImageResource(R.drawable.profile_placeholder)
 
+        /* Regresar */
         val backButton = findViewById<ImageButton>(R.id.backButton)
         backButton.setOnClickListener { finish() }
 
         txtPuntos.text = "Puntos acumulados: 0.00"
         txtCorreo.text = currentUser.email ?: "Sin correo"
 
-        // Obtener nombre desde Firestore
-        firestore.collection("users").document(currentUser.uid)
+        // Obtener nombre y puntos por recompensa desde documento de usuario
+        firestore.collection("usuarios").document(currentUser.uid)
             .get()
             .addOnSuccessListener { document ->
                 val nombre = document.getString("name") ?: "Sin nombre"
                 txtNombre.text = nombre
+
+                val puntosTotales = document.getDouble("puntos") ?: 0.0
+                txtPuntos.text = "Puntos acumulados: %.2f".format(puntosTotales)
+                Log.d("PerfilActivity", "Puntos totales desde usuarios: $puntosTotales")
             }
             .addOnFailureListener {
                 txtNombre.text = "Sin nombre"
-            }
-
-        // Obtener puntos acumulados del usuario
-        firestore.collection("recolecciones")
-            .whereEqualTo("userId", currentUser.uid)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                var puntosTotales = 0.0
-                for (document in querySnapshot) {
-                    val puntos = document.getDouble("puntos") ?: 0.0
-                    puntosTotales += puntos
-                }
-                txtPuntos.text = "Puntos acumulados: %.2f".format(puntosTotales)
-                Log.d("PerfilActivity", "Total puntos: $puntosTotales") // 👈 Verifica en logcat
+                txtPuntos.text = "Error al cargar puntos"
             }
 
             .addOnFailureListener {
-                txtPuntos.text = "Puntos acumulados: Error"
+                txtNombre.text = "Sin nombre"
+                txtPuntos.text = "Error al cargar datos"
             }
-
-        btnVerHistorial.setOnClickListener {
-            startActivity(Intent(this, HistorialActivity::class.java))
-        }
 
         btnCerrarSesion.setOnClickListener {
             cerrarSesion("Sesión cerrada correctamente")

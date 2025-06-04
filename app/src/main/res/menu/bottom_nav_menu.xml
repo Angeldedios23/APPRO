@@ -4,9 +4,9 @@
         android:icon="@drawable/ic_home"
         android:title="Inicio" />
     <item
-        android:id="@+id/nav_rewards"
+        android:id="@+id/nav_raffle"
         android:icon="@drawable/ic_gift"
-        android:title="Rifas" />
+        android:title="Rifa"/>
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_user"

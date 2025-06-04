@@ -66,18 +66,6 @@
         android:gravity="center"
         android:fontFamily="sans-serif" />
 
-    <!-- Botón ver historial -->
-    <Button
-        android:id="@+id/btnVerHistorial"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ver historial"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#388E3C"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif-medium" />
-
     <!-- Botón cerrar sesión -->
     <Button
         android:id="@+id/btnCerrarSesion"

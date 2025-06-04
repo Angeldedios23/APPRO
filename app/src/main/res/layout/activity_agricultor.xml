@@ -1,48 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="#FFFFFF">
 
-    <!-- Encabezado con botón de regreso -->
     <LinearLayout
+        android:orientation="vertical"
+        android:padding="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_horizontal">
 
+        <!-- Botón de regresar -->
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_back"
             android:background="@android:color/transparent"
-            android:contentDescription="Volver" />
+            android:contentDescription="Volver"
+            android:layout_gravity="start"
+            android:layout_marginBottom="8dp" />
 
+        <!-- Título principal -->
         <TextView
-            android:text="Opciones para agricultores"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"
+            android:id="@+id/txtTituloAgricultor"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="🌱 Apartado para Agricultores"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Descripción -->
+        <TextView
+            android:id="@+id/txtDescripcionAgricultor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aquí puedes comprar composta disponible u ofrecer la tuya para que otros la adquieran.
+
+🛒 Comprar composta: Visualiza composta en venta publicada por otros usuarios.
+
+📦 Vender composta: Publica tu composta disponible incluyendo descripción, cantidad y precio."
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Botón: Comprar composta -->
+        <Button
+            android:id="@+id/btnComprar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🛒 Comprar composta"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF" />
+
+        <!-- Botón: Vender composta -->
+        <Button
+            android:id="@+id/btnVender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📦 Vender composta"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF" />
+
     </LinearLayout>
-
-    <!-- Botones -->
-    <Button
-        android:id="@+id/btnComprar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Comprar composta"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="8dp" />
-
-    <Button
-        android:id="@+id/btnVender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vender composta" />
-
-</LinearLayout>
+</ScrollView>

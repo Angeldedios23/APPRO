@@ -27,36 +27,46 @@
                 android:iconifiedByDefault="false"
                 android:elevation="2dp" />
 
-            <!-- ChipGroup -->
-            <com.google.android.material.chip.ChipGroup
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:scrollbars="none"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
-                app:singleLine="true"
-                app:singleSelection="false">
+                android:layout_marginBottom="12dp">
 
-                <com.google.android.material.chip.Chip
-                    android:text="🎁 Recompensas"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                <com.google.android.material.chip.ChipGroup
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    app:singleLine="true"
+                    app:singleSelection="false">
 
-                <com.google.android.material.chip.Chip
-                    android:text="👥 Amigos"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRecompensa"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reclamar recompensa diaria"
+                        android:clickable="true"
+                        android:checkable="false"
+                        app:chipIconVisible="true"
+                        app:closeIconEnabled="false" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipHistorial"
-                    android:text="🕘 Historial"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.chip.ChipGroup>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipHistorial"
+                        android:text="🕘 Historial"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:checkable="false"
+                        app:chipIconVisible="true"
+                        app:closeIconEnabled="false" />
 
-            <!-- Texto sección -->
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
+<!--            &lt;!&ndash; Texto sección &ndash;&gt;
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +76,7 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
-            <!-- Carrusel -->
+            &lt;!&ndash; Carrusel &ndash;&gt;
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +104,7 @@
                         android:layout_height="80dp"
                         android:src="@drawable/despensas" />
                 </LinearLayout>
-            </HorizontalScrollView>
+            </HorizontalScrollView>-->
 
             <!-- Ubicación -->
             <TextView
@@ -141,6 +151,5 @@
         app:menu="@menu/bottom_nav_menu"
         android:background="#FFFFFF"
         app:itemIconTint="@color/bottom_nav_color"
-        app:itemTextColor="@color/bottom_nav_color"
-   />
+        app:itemTextColor="@color/bottom_nav_color" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
