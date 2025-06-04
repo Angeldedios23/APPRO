@@ -4,31 +4,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4CAF50">
+    android:background="#F5F5F5">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="#F5F5F5">
 
-            <!-- Search View -->
+            <!-- SearchView -->
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:queryHint="Buscar" />
+                android:queryHint="Buscar"
+                android:iconifiedByDefault="false"
+                android:elevation="2dp" />
 
-            <!-- Chips -->
+            <!-- ChipGroup -->
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 app:singleLine="true"
                 app:singleSelection="false">
 
@@ -45,22 +49,22 @@
                     android:layout_height="wrap_content" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHistorial"
                     android:text="🕘 Historial"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
             </com.google.android.material.chip.ChipGroup>
 
-            <!-- Rifas activas -->
+            <!-- Texto sección -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rifas activas"
-                android:textSize="18sp"
-                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp" />
 
             <!-- Carrusel -->
             <HorizontalScrollView
@@ -77,54 +81,54 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/lavadora"
-                        android:layout_marginRight="12dp"/>
+                        android:layout_marginRight="12dp" />
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/cupones"
-                        android:layout_marginRight="12dp"/>
+                        android:layout_marginRight="12dp" />
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/despensas"/>
+                        android:src="@drawable/despensas" />
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <!-- Mapa -->
+            <!-- Ubicación -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tu ubicación:"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="16dp"/>
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp" />
 
             <FrameLayout
                 android:id="@+id/map_container"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="8dp"
-                android:background="#E0E0E0"/>
+                android:background="#E0E0E0" />
 
+            <!-- Botones -->
             <Button
                 android:id="@+id/btnColaborar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Colaborar"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@color/orange_500"
+                android:backgroundTint="#FF9800"
                 android:textColor="@android:color/white" />
 
             <Button
-                android:id="@+id/btnResiduos"
+                android:id="@+id/btnRecoleccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Residuos"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/blue_500"
+                android:text="Recolección"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#FF9800"
                 android:textColor="@android:color/white" />
-
         </LinearLayout>
     </ScrollView>
 
@@ -135,5 +139,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu"
-        />
+        android:background="#FFFFFF"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
+   />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
