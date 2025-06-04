@@ -1,0 +1,144 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4CAF50">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Encabezado con botón atrás y título centrado -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:background="@android:color/transparent"
+                android:contentDescription="Volver"
+                android:tint="@android:color/white"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detalles de residuos"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp" />
+        </RelativeLayout>
+
+        <!-- Semana -->
+        <TextView
+            android:id="@+id/semanaTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Fecha de recolección -->
+        <EditText
+            android:id="@+id/fechaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Selecciona la fecha de recolección"
+            android:focusable="false"
+            android:clickable="true"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:textColorHint="#BDBDBD"
+            android:fontFamily="sans-serif"
+            android:background="@drawable/edittext_background"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Lista de residuos -->
+        <LinearLayout
+            android:id="@+id/listaResiduosLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Botón agregar residuos -->
+        <Button
+            android:id="@+id/agregarResiduoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar residuos"
+            android:drawableStart="@drawable/ic_add"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/orange_500"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="24dp"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="12dp"
+            android:drawablePadding="8dp" />
+
+        <!-- Resultados -->
+        <TextView
+            android:id="@+id/puntosText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Puntos obtenidos: 0 pts"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="28dp" />
+
+        <TextView
+            android:id="@+id/cantidadText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cantidad: 0 piezas"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif" />
+
+        <TextView
+            android:id="@+id/pesoAproxText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Peso aprox: 0.00 Kg"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif" />
+
+        <TextView
+            android:id="@+id/totalText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total: 0.00 Kg"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif" />
+
+        <!-- Botón finalizar -->
+        <Button
+            android:id="@+id/btnGuardarRecoleccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar recolección"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="#000000"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:paddingVertical="16dp"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</ScrollView>

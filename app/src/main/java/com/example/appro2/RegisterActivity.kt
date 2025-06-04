@@ -17,7 +17,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
-
     private lateinit var fotoPerfil: ImageView
     private lateinit var selectImageButton: Button
     private var selectedImageUri: Uri? = null
@@ -76,7 +75,6 @@ class RegisterActivity : AppCompatActivity() {
                 showAlert("Contraseña inválida", "Debe tener al menos 6 caracteres")
                 return@setOnClickListener
             }
-
             val imageUrlLocal = selectedImageUri?.toString()
 
             auth.createUserWithEmailAndPassword(email, password)
@@ -131,15 +129,15 @@ class RegisterActivity : AppCompatActivity() {
     private fun saveUserToFirestore(userId: String, name: String, email: String, profileUrl: String?) {
         val user = hashMapOf(
             "name" to name,
-            "email" to email
+            "email" to email,
+            "puntos" to 0.0  // 👈 también añadimos campo puntos desde el inicio
         )
 
-        // Solo guardar profileUrl si hay imagen seleccionada
         if (!profileUrl.isNullOrEmpty()) {
             user["profileUrl"] = profileUrl
         }
 
-        firestore.collection("users").document(userId)
+        firestore.collection("usuarios").document(userId)  // 👈 cambio aquí
             .set(user)
             .addOnSuccessListener {
                 showAlert("Registro exitoso", "Usuario registrado correctamente") {
@@ -149,8 +147,8 @@ class RegisterActivity : AppCompatActivity() {
                     finish()
                 }
             }
-            .addOnFailureListener {
-                showAlert("Error", "Error al guardar los datos en Firestore")
+            .addOnFailureListener { e ->
+                showAlert("Error", "Error al guardar en Firestore: ${e.message}")
             }
     }
 

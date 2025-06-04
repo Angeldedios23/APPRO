@@ -7,12 +7,25 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.chip.Chip
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
 
+    private var lastInteractionTime: Long = 0
+    private val logoutTimeout: Long = 10 * 60 * 1000 // 10 minutos
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        FirebaseApp.initializeApp(this)
+        setContentView(R.layout.activity_main) // ✅ Esto debe ir primero
+
+        val chipHistorial = findViewById<Chip>(R.id.chipHistorial)
+        chipHistorial.setOnClickListener {
+            val intent = Intent(this, HistorialActivity::class.java)
+            startActivity(intent)
+        }
 
         // 🔹 Insertar el MapaFragment dentro de map_container
         val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -23,7 +36,11 @@ class MainActivity : AppCompatActivity() {
         val searchView = findViewById<SearchView>(R.id.search_view)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val btnColaborar = findViewById<Button>(R.id.btnColaborar)
-        val btnCheckout = findViewById<Button>(R.id.btnResiduos)
+        val btnRecoleccion = findViewById<Button>(R.id.btnRecoleccion)
+
+        btnRecoleccion.setOnClickListener {
+            startActivity(Intent(this, RecoleccionActivity::class.java))
+        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -40,10 +57,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, RolActivity::class.java))
         }
 
-        btnCheckout.setOnClickListener {
-            startActivity(Intent(this, CheckoutActivity::class.java))
-        }
-
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -58,5 +71,29 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val currentTime = System.currentTimeMillis()
+        if (lastInteractionTime != 0L && currentTime - lastInteractionTime > logoutTimeout) {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        lastInteractionTime = System.currentTimeMillis()
     }
 }

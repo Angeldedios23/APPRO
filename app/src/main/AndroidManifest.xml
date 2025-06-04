@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.appro2">
-
     <!-- 🔐 Permisos para acceder a imágenes -->
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32"/>
-
-    <!-- 📍 Permisos para acceder a la ubicación -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" /> <!-- 📍 Permisos para acceder a la ubicación -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -18,30 +16,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppRO2">
-
-        <!-- 🔑 API Key de Google Maps -->
+        <activity
+            android:name=".HistorialAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".HistorialActivity"
+            android:exported="false" /> <!-- 🔑 API Key de Google Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
         <meta-data
             android:name="firebase_database_url"
             android:value="https://appro2-firebase.firebaseio.com" />
-
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
-
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
-
-
-        <!-- 🧭 Actividades -->
-        <activity android:name=".RegisterActivity" android:exported="false" />
-        <activity android:name=".LoginActivity" android:exported="true">
+            android:value="@integer/google_play_services_version" /> <!-- 🧭 Actividades -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -50,10 +51,11 @@
         <activity android:name=".GranjeroActivity" />
         <activity android:name=".SupermercadoActivity" />
         <activity android:name=".RolActivity" />
-        <activity android:name=".HistorialActivity" />
         <activity android:name=".PerfilActivity" />
-        <activity android:name=".CheckoutActivity" />
-        <activity android:name=".MainActivity" android:exported="false" />
+        <activity android:name=".RecoleccionActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

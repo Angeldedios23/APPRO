@@ -2,6 +2,7 @@ package com.example.appro2
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -56,7 +57,7 @@ class PerfilActivity : AppCompatActivity() {
         txtPuntos.text = "Puntos acumulados: 0.00"
         txtCorreo.text = currentUser.email ?: "Sin correo"
 
-        // Obtener nombre desde Firestore (si quieres)
+        // Obtener nombre desde Firestore
         firestore.collection("users").document(currentUser.uid)
             .get()
             .addOnSuccessListener { document ->
@@ -65,6 +66,24 @@ class PerfilActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
                 txtNombre.text = "Sin nombre"
+            }
+
+        // Obtener puntos acumulados del usuario
+        firestore.collection("recolecciones")
+            .whereEqualTo("userId", currentUser.uid)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                var puntosTotales = 0.0
+                for (document in querySnapshot) {
+                    val puntos = document.getDouble("puntos") ?: 0.0
+                    puntosTotales += puntos
+                }
+                txtPuntos.text = "Puntos acumulados: %.2f".format(puntosTotales)
+                Log.d("PerfilActivity", "Total puntos: $puntosTotales") // 👈 Verifica en logcat
+            }
+
+            .addOnFailureListener {
+                txtPuntos.text = "Puntos acumulados: Error"
             }
 
         btnVerHistorial.setOnClickListener {

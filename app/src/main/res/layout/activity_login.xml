@@ -5,13 +5,22 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     tools:context=".LoginActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <!-- Contenedor centrado para Login -->
+    <LinearLayout
+        android:id="@+id/loginContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:gravity="center_horizontal"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/goToRegisterText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.4">
 
         <!-- Título -->
         <TextView
@@ -19,10 +28,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bienvenido a AppRo"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="#4CAF50"
-            android:layout_marginBottom="24dp" />
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="32dp" />
 
         <!-- Campo de Correo -->
         <EditText
@@ -30,36 +40,48 @@
             android:hint="Correo electrónico"
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:textSize="18sp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="16dp" />
 
         <!-- Campo de Contraseña -->
-
         <EditText
             android:id="@+id/passwordEditText"
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:textSize="18sp"
+            android:background="@android:drawable/editbox_background"
+            android:layout_marginBottom="24dp" />
 
-        <!-- Boton de Inicio de sesión -->
-
+        <!-- Botón de Inicio de sesión -->
         <Button
             android:id="@+id/loginButton"
             android:text="Iniciar sesión"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
-
-        <!-- Registro -->
-
-        <TextView
-            android:id="@+id/goToRegisterText"
-            android:text="¿No tienes cuenta? Regístrate"
-            android:textColor="#0000FF"
-            android:layout_marginTop="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:backgroundTint="#4CAF50"
+            android:paddingVertical="14dp" />
     </LinearLayout>
 
-
+    <!-- Texto de registro al fondo -->
+    <TextView
+        android:id="@+id/goToRegisterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿No tienes cuenta? Regístrate"
+        android:textColor="#1E88E5"
+        android:textSize="16sp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
