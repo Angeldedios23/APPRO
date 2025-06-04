@@ -189,6 +189,7 @@ class RecoleccionActivity : AppCompatActivity() {
             .add(recolecta)
             .addOnSuccessListener {
                 Toast.makeText(this, "Recolección guardada en Firestore", Toast.LENGTH_SHORT).show()
+                actualizarPuntosUsuario(puntosTotales) // 👈 Aquí llamamos a la función
                 finish()
             }
             .addOnFailureListener {

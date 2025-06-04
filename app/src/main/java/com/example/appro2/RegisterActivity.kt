@@ -130,8 +130,10 @@ class RegisterActivity : AppCompatActivity() {
         val user = hashMapOf(
             "name" to name,
             "email" to email,
-            "puntos" to 0.0  // 👈 también añadimos campo puntos desde el inicio
+            "puntos" to 0.0,
+            "ultimoReclamo" to null // 👈 nuevo campo para recompensas diarias
         )
+
 
         if (!profileUrl.isNullOrEmpty()) {
             user["profileUrl"] = profileUrl

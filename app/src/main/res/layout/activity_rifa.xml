@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#E8F5E9"
+    android:background="#F7F7F7"
+    android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
     <!-- Botón de regresar -->
     <ImageButton
@@ -16,21 +16,19 @@
         android:contentDescription="Volver" />
 
     <TextView
-        android:id="@+id/titleTienda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tiendas Disponibles"
-        android:textSize="22sp"
+        android:text="Premios disponibles"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#2E7D32"
+        android:textColor="#333"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginBottom="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerTiendas"
+        android:id="@+id/recyclerPremios"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="16dp"/>
-
+        android:paddingBottom="12dp"/>
 </LinearLayout>

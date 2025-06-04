@@ -10,11 +10,10 @@ class RolActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rol)
+        setContentView(R.layout.activity_colaborar)
 
         val btnRepartidor = findViewById<Button>(R.id.btnRepartidor)
         val btnAgricultor = findViewById<Button>(R.id.btnAgricultor)
-        val btnGranjero = findViewById<Button>(R.id.btnGranjero)
         val btnSupermercado = findViewById<Button>(R.id.btnSupermercado)
         val backButton = findViewById<ImageButton>(R.id.backButton)
 
@@ -24,10 +23,6 @@ class RolActivity : AppCompatActivity() {
 
         btnAgricultor.setOnClickListener {
             startActivity(Intent(this, AgricultorActivity::class.java))
-        }
-
-        btnGranjero.setOnClickListener {
-            startActivity(Intent(this, GranjeroActivity::class.java))
         }
 
         btnSupermercado.setOnClickListener {
